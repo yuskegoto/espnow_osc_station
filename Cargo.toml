@@ -1,0 +1,51 @@
+[package]
+name = "espnow-osc-station"
+version = "0.1.0"
+authors = ["Yuske Goto <yuskegoto@gmail.com>"]
+edition = "2021"
+resolver = "2"
+rust-version = "1.66"
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true    # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+
+default = ["all", "hal", "esp-idf-sys/native", "LAN870"]
+
+# For TTGO device
+LAN870 = []
+# # For Feather device
+# W5500 = []
+
+pio = ["esp-idf-sys/pio"]
+all = ["std", "nightly", "experimental", "embassy"]
+hal = ["esp-idf-hal", "embedded-svc", "esp-idf-svc"]
+std = ["alloc", "esp-idf-sys/std", "esp-idf-sys/binstart", "embedded-svc?/std", "esp-idf-hal?/std", "esp-idf-svc?/std"]
+alloc = ["embedded-svc?/alloc", "esp-idf-hal?/alloc", "esp-idf-svc?/alloc"]
+nightly = ["embedded-svc?/nightly", "esp-idf-svc?/nightly"]
+experimental = ["embedded-svc?/experimental", "esp-idf-svc?/experimental"]
+embassy = ["esp-idf-hal?/embassy-sync", "esp-idf-hal?/critical-section", "esp-idf-hal?/edge-executor", "esp-idf-svc?/embassy-time-driver", "esp-idf-svc?/embassy-time-isr-queue"]
+
+[dependencies]
+anyhow = "1"
+log = { version = "0.4.17", default-features = false }
+esp-idf-sys = { version = "0.33", default-features = true}
+esp-idf-hal = { version = "0.41", optional = true, default-features = true }
+esp-idf-svc = { version = "0.46", optional = true, default-features = true }
+embedded-svc = { version = "0.25", optional = true, default-features = true }
+
+heapless = "0.7"
+rosc = "0.10.1"
+bbqueue = "0.5.1"
+
+num = "0.4"
+num-derive = "0.4.0"
+num-traits = "0.2"
+
+[build-dependencies]
+embuild = "0.31.2"
