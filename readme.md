@@ -10,8 +10,8 @@ The pros of the ESP-NOW are that once bonded, it's (relatively) reliable, can ch
 The downside of the protocol is that you can't diectly communicate with PCs. This is why I develop this project.
 
 ## Related projects
-[ESP-NOW Arduino Client]()
 [ESP-NOW Rust Client](https://github.com/yuskegoto/espnow_rust_client)
+[ESP-NOW Arduino Client](https://github.com/yuskegoto/espnow_arduino_client)
 
 ## Hardware
 I target [T-Internet-POE](https://www.lilygo.cc/products/t-internet-poe) for this project because it was cheap to obtain. It uses Ethernet-PHY LAN8720A and can accept PoE (with some cautions!).
